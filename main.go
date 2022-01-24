@@ -127,7 +127,7 @@ type urls struct {
 func getRestoInfo(lat string, lng string) []*linebot.CarouselColumn {
 	apikey := "4869eef30bfe5c4a"
 	url := fmt.Sprintf(
-		"https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?format=json&key=%s&lat=%s&lng=%s",
+		"https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?format=json&key=%s&lat=%s&lng=%s&range=5",
 		apikey, lat, lng)
 
 	// リクエストしてボディを取得
