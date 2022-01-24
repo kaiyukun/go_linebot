@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	// "os"
+	"os"
 	"strconv"
 	"encoding/json"
 	"io/ioutil"
 	"unicode/utf8"
 
 	"github.com/line/line-bot-sdk-go/v7/linebot"
+	"github.com/gin-gonic/gin"
 	
 )
 
@@ -20,6 +21,9 @@ func main() {
 	http.HandleFunc("/callback", lineHandler)
 
 	fmt.Println("http://localhost:8080 で起動中...")
+	router := gin.Default()
+	port := os.Getenv("PORT")
+	router.Run(":"+port)
 	// HTTPサーバを起動
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
