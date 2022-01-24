@@ -11,7 +11,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/line/line-bot-sdk-go/v7/linebot"
-	"github.com/gin-gonic/gin"
+	
 	
 )
 
@@ -19,13 +19,16 @@ func main() {
 	// ハンドラの登録
 	http.HandleFunc("/", helloHandler)
 	http.HandleFunc("/callback", lineHandler)
-
+	
 	fmt.Println("http://localhost:8080 で起動中...")
-	router := gin.Default()
 	port := os.Getenv("PORT")
-	router.Run(":"+port)
-	// HTTPサーバを起動
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
+        log.Fatal(err)
+    }
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
