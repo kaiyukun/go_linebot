@@ -149,7 +149,7 @@ func getRestoInfo(lat string, lng string) []*linebot.CarouselColumn {
 
 	var ccs []*linebot.CarouselColumn
 	for _, shop := range data.Results.Shop {
-		open := shop.Address
+		open := shop.Open
 		if 60 < utf8.RuneCountInString(open) {
 			open = string([]rune(open)[:60])
 		}
