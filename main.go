@@ -39,10 +39,10 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func lineHandler(w http.ResponseWriter, r *http.Request) {
 	// BOTを初期化
 	bot, err := linebot.New(
-		// os.Getenv("LINE_BOT_CHANNEL_SECRET"),
-		// os.Getenv("LINE_BOT_CHANNEL_TOKEN"),
-		"63807e1aa6417dd7b78c01347f50b473",
-		"7iU4LtyQA8sruQboSNuFIgHrOo0CrgpR20TKDH0nq6ibOo0JBUUMu7SZ3mZ5l01oPlJ+U8BY2vPtOyZiO4zAQeEw/FnQO6vsDCkFq7/zUuUf5sIh+fRUI+VAZPPJnbNktykFPajdPzCJXihmXPOofwdB04t89/1O/w1cDnyilFU=",
+		os.Getenv("LINE_BOT_CHANNEL_SECRET"),
+		os.Getenv("LINE_BOT_CHANNEL_TOKEN"),
+		// "63807e1aa6417dd7b78c01347f50b473",
+		// "7iU4LtyQA8sruQboSNuFIgHrOo0CrgpR20TKDH0nq6ibOo0JBUUMu7SZ3mZ5l01oPlJ+U8BY2vPtOyZiO4zAQeEw/FnQO6vsDCkFq7/zUuUf5sIh+fRUI+VAZPPJnbNktykFPajdPzCJXihmXPOofwdB04t89/1O/w1cDnyilFU=",
 	)
 	if err != nil {
 		log.Fatal(err)
