@@ -41,8 +41,6 @@ func lineHandler(w http.ResponseWriter, r *http.Request) {
 	bot, err := linebot.New(
 		os.Getenv("LINE_BOT_CHANNEL_SECRET"),
 		os.Getenv("LINE_BOT_CHANNEL_TOKEN"),
-		// "63807e1aa6417dd7b78c01347f50b473",
-		// "7iU4LtyQA8sruQboSNuFIgHrOo0CrgpR20TKDH0nq6ibOo0JBUUMu7SZ3mZ5l01oPlJ+U8BY2vPtOyZiO4zAQeEw/FnQO6vsDCkFq7/zUuUf5sIh+fRUI+VAZPPJnbNktykFPajdPzCJXihmXPOofwdB04t89/1O/w1cDnyilFU=",
 	)
 	if err != nil {
 		log.Fatal(err)
@@ -107,7 +105,6 @@ type results struct {
 // shop レストラン一覧
 type shop struct {
 	Name    string `json:"name"`
-	// Address string `json:"address"`
 	Open    string `json:"open"`
 	Photo photo `json:"photo"`
 	URLS urls `json:"urls"`
@@ -126,7 +123,7 @@ type urls struct {
 }
 
 func getRestoInfo(lat string, lng string) []*linebot.CarouselColumn {
-	apikey := "4869eef30bfe5c4a"
+	apikey := os.Getenv("HOTPEPPER_API_KEY")
 	url := fmt.Sprintf(
 		"https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?format=json&key=%s&lat=%s&lng=%s&range=5",
 		apikey, lat, lng)
