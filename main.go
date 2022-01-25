@@ -107,7 +107,7 @@ type results struct {
 // shop レストラン一覧
 type shop struct {
 	Name    string `json:"name"`
-	Address string `json:"address"`
+	// Address string `json:"address"`
 	Open    string `json:"open"`
 	Photo photo `json:"photo"`
 	URLS urls `json:"urls"`
@@ -149,15 +149,15 @@ func getRestoInfo(lat string, lng string) []*linebot.CarouselColumn {
 
 	var ccs []*linebot.CarouselColumn
 	for _, shop := range data.Results.Shop {
-		addr := shop.Address
-		if 60 < utf8.RuneCountInString(addr) {
-			addr = string([]rune(addr)[:60])
+		open := shop.Address
+		if 60 < utf8.RuneCountInString(open) {
+			open = string([]rune(open)[:60])
 		}
 
 		cc := linebot.NewCarouselColumn(
 			shop.Photo.Mobile.L,
-			shop.Name + shop.Open,
-			addr,
+			shop.Name,
+			open,
 			linebot.NewURIAction("ホットペッパーで開く", shop.URLS.PC),
 		).WithImageOptions("#FFFFFF")
 		ccs = append(ccs, cc)
