@@ -108,6 +108,7 @@ type results struct {
 type shop struct {
 	Name    string `json:"name"`
 	Address string `json:"address"`
+	Open    string `json:"open"`
 	Photo photo `json:"photo"`
 	URLS urls `json:"urls"`
 }
@@ -155,7 +156,7 @@ func getRestoInfo(lat string, lng string) []*linebot.CarouselColumn {
 
 		cc := linebot.NewCarouselColumn(
 			shop.Photo.Mobile.L,
-			shop.Name,
+			shop.Name + shop.Open,
 			addr,
 			linebot.NewURIAction("ホットペッパーで開く", shop.URLS.PC),
 		).WithImageOptions("#FFFFFF")
